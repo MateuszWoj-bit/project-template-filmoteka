@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <script type="module" src="./index.js"></script>
+    <style>
+      .box {
+        flex-basis: calc((100% - 166px) / 3);
+        background-color: #fff;
+      }
+      .box-shadow:hover {
+        max-width: 294px;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        padding-bottom: 3px;
+        border-radius: 5px;
+      }
+      .boxID {
+        width: 294px;
+        border-radius: 5px;
+        cursor: crosshair;
+      }
+      .font {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        padding-left: 5px;
+      }
+      .font-info {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #ff6b08;
+        margin-top: 5px;
+        padding-left: 5px;
+      }
+
+      .gallery {
+        margin-left: 50%;
+        margin-top: 20px;
+        max-width: 1024px;
+        gap: 10px 50px;
+        display: flex;
+        align-items: flex-start;
+        justify-items: center;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        transform: translateX(-50%);
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ❗️❗️❗️ Add partials like so for every page -->
+
+    <div class="gallery"></div>
+  </body>
+  <script type="module" defer>
+    import axios from 'axios';
+
+    const gallery = document.querySelector('.gallery');
+    const apiKey = '4e9fa3fc2487236fdff94602c5bb9552';
+    let page = 1;
+
+    const fetchTrending = async () => {
+      const table = await axios.get(
+        `
+https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
+      );
+      console.log(table);
+      return table;
+    };
+
+    function renderVaules(response) {
+      const markupList = response.data.results
+        .map(
+          image => `<div class="box">
+      <div class="box-shadow">
+      <image class="boxID" alt="${image.title} movie poster" movieID=${
+            image.id
+          } movieTitle="${
+            image.title + ' ' + Number.parseInt(image.release_date)
+          }" src="https://image.tmdb.org/t/p/w500${image.poster_path}"       
+      <div><p class = "font"><b>${image.title}</b></p>
+      <p class = "font-info"> ${image.genre_ids
+        .map(element => gen(element))
+        .join(`, `)}  
+     | ${Number.parseInt(image.release_date)}</p> 
+     </div>
+     </div>
+     </div>
+   `
+        )
+        .join(``);
+
+      gallery.insertAdjacentHTML('beforeend', markupList);
+    }
+
+    function loadData() {
+      gallery.innerHTML = '';
+      fetchTrending()
+        .then(function (response) {
+          // handle success
+          renderVaules(response);
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+
+    const idForNameGeneres = [
+      { id: 28, name: 'Action' },
+      { id: 12, name: 'Adventure' },
+      { id: 16, name: 'Animation' },
+      { id: 35, name: 'Comedy' },
+      { id: 80, name: 'Crime' },
+      { id: 99, name: 'Documentary' },
+      { id: 18, name: 'Drama' },
+      { id: 10751, name: 'Family' },
+      { id: 14, name: 'Fantasy' },
+      { id: 36, name: 'History' },
+      { id: 27, name: 'Horror' },
+      { id: 10402, name: 'Music' },
+      { id: 9648, name: 'Mystery' },
+      { id: 10749, name: 'Romance' },
+      { id: 878, name: 'Science Fiction' },
+      { id: 10770, name: 'TV Movie' },
+      { id: 53, name: 'Thriller' },
+      { id: 10752, name: 'War' },
+      { id: 37, name: 'Western' },
+    ];
+
+    function gen(genID) {
+      for (let id of idForNameGeneres) {
+        if (id.id === genID) {
+          return id.name;
+        }
+      }
+    }
+
+    window.onload = loadData;
+  </script>
+</html>
