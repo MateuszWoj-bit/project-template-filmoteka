@@ -79,7 +79,7 @@
     const apiKey = '4e9fa3fc2487236fdff94602c5bb9552';
     let page = 1;
 
-    const fetchTrending = async () => {
+    const fetchTrendingMovies = async () => {
       const table = await axios.get(
         `
 https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
@@ -88,7 +88,7 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
       return table;
     };
 
-    function renderVaules(response) {
+    function renderTrendingMovies(response) {
       const markupList = response.data.results
         .map(
           image => `<div class="box">
@@ -100,7 +100,7 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
           }" src="https://image.tmdb.org/t/p/w500${image.poster_path}"       
       <div><p class = "font"><b>${image.title}</b></p>
       <p class = "font-info"> ${image.genre_ids
-        .map(element => gen(element))
+        .map(element => idToGenereTranslate(element))
         .join(`, `)}  
      | ${Number.parseInt(image.release_date)}</p> 
      </div>
@@ -113,12 +113,12 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
       gallery.insertAdjacentHTML('beforeend', markupList);
     }
 
-    function loadData() {
+    function loadMovieDataOnStart() {
       gallery.innerHTML = '';
-      fetchTrending()
+      fetchTrendingMovies()
         .then(function (response) {
           // handle success
-          renderVaules(response);
+          renderTrendingMovies(response);
           console.log(response);
         })
         .catch(function (error) {
@@ -149,7 +149,7 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
       { id: 37, name: 'Western' },
     ];
 
-    function gen(genID) {
+    function idToGenereTranslate(genID) {
       for (let id of idForNameGeneres) {
         if (id.id === genID) {
           return id.name;
@@ -157,6 +157,6 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
       }
     }
 
-    window.onload = loadData;
+    window.onload = loadMovieDataOnStart;
   </script>
 </html>
