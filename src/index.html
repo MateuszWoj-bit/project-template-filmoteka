@@ -76,13 +76,13 @@
     import axios from 'axios';
 
     const gallery = document.querySelector('.gallery');
-    const apiKey = '4e9fa3fc2487236fdff94602c5bb9552';
+    const API_KEY = '4e9fa3fc2487236fdff94602c5bb9552';
     let page = 1;
 
     const fetchTrendingMovies = async () => {
       const table = await axios.get(
         `
-https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
+https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}`
       );
       console.log(table);
       return table;
@@ -118,8 +118,7 @@ https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${page}`
       fetchTrendingMovies()
         .then(function (response) {
           // handle success
-          renderTrendingMovies(response);
-          console.log(response);
+          renderTrendingMovies(response);          
         })
         .catch(function (error) {
           // handle error
