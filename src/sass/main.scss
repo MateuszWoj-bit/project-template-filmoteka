@@ -1,0 +1,12 @@
+/*
+ * Główny plik dla stylów.
+ * Wszystkie partials podłączamy tutaj.
+ */
+
+// Style dla pliku z przykładem HTML fragmentu
+@import './example';
+@import './partials/general';
+@import './partials/trending';
+@import './partials/movieModal';
+@import './partials/body';
+@import './partials/footer';

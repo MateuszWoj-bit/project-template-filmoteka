@@ -1,14 +1,10 @@
-<article class="example" id="uk">
-  <h1>HTML-partials</h1>
+<article class="example">
+  <h1>HTML-fragmenty</h1>
 
-  <!--
-    ❗️❗️❗️ The path to images from the HTML partial
-    is the same as from the index.html file
-  -->
-  <img src="images/logo.png" alt="" width="320" />
-
+  <!-- Sciezka do zdjęcia z HTML-fragmenta jest taka sama jak z plikuindex.html -->
+  <img src="images/demo.jpg" alt="" width="320" />
   <p>
-    The
+    Plugin
     <a
       href="https://github.com/posthtml/posthtml-include"
       target="_blank"
@@ -16,21 +12,21 @@
     >
       posthtml-include
     </a>
-    plugin allows you to add code from other HTML files (fragments) to HTML page
-    files. Fragments are stored in the <code>src/partials</code> folder. The
-    addition occurs when compiling page files, such as <code>index.html</code>.
+    pozwala dodawać HTML-pliki stron kod z innych HTML plików(fragmentów). Fragmenty zapisują się w
+    folderze
+    <code>src/partials</code>. Dodanie odbywa się przy komplikacji plików strony, np
+    <code>index.html</code>.
   </p>
 
   <p>
-    This <code>example.html</code> file is an example of such a snippet, with
-    the markup of a certain part of the main page. This is very convenient for
-    team development on student projects, when several people write in one HTML
-    file at once.
+    Ten plik <code>example.html</code> &mdash; przykład takiego fragmentu, który posiada jakiś kod
+    dla strony głównej. To jest bardzo wygodne przy pracy zespołowej podczas projektów studenckich,
+    kidy od razu kilka osób piszę kod w jednym HTML pliku.
   </p>
 
   <p>
-    The syntax for adding a fragment to the main file is:
-    <code> &lt;include src="./partials/filename.html"&gt;&lt;/include&gt;</code>
+    Syntaksys dodania fragmentu do głównego pliku:
+    <code> &lt;include src="./partials/nazwa-pliku.html"&gt;&lt;/include&gt; </code>
   </p>
 
   <div class="background"></div>
