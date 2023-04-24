@@ -4,9 +4,15 @@
  */
 
 // Style dla pliku z przykładem HTML fragmentu
+@import './partials/card';
 @import './example';
 @import './partials/general';
-@import './partials/trending';
 @import './partials/movieModal';
 @import './partials/body';
+@import './partials/header-main';
+@import './partials/main-container';
+@import './partials/pagination';
 @import './partials/footer';
+@import './partials/spinner';
+@import './partials/nomovie-message';
+@import './partials/_mylibrary-header'
