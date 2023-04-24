@@ -72,8 +72,7 @@ function searchFilms(event) {
     elements: { searchQuery },
   } = event.currentTarget;
   console.log(searchQuery.value);
-  searchMore = searchQuery.value;
-  page = 1;
+  searchMore = searchQuery.value; 
 
   listFilms.innerHTML = '';
 
