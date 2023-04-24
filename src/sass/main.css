@@ -76,6 +76,10 @@
   display: none;
 }
 
+p {
+  margin: 0;
+}
+
 .stream {
   border-radius: 5px;
   margin-bottom: 5px;
@@ -144,12 +148,6 @@
   line-height: 16px;
   cursor: pointer;
   margin-bottom: 20px;
-}
-
-.btn-mod-color {
-  background: #bb1121;
-  border: none;
-  color: #ffffff;
 }
 
 .watch:hover,
@@ -486,6 +484,12 @@
 
 button {
   cursor: crosshair;
+}
+
+.btn-mod-color {
+  background: #bb1121;
+  border: none;
+  color: #ffffff;
 }
 
 body {
@@ -1027,6 +1031,11 @@ body {
 
 .header-library-buttons__button:hover,
 .header-library-buttons__button--active {
+  background-color: #ff6b08;
+  border: 1px solid #ff6b08;
+}
+
+.active {
   background-color: #ff6b08;
   border: 1px solid #ff6b08;
 }/*# sourceMappingURL=main.css.map */

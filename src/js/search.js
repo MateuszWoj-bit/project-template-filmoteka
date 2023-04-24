@@ -24,10 +24,10 @@ const fetchSearchMovies = async (query, page) => {
 };
 
 function renderFilms(images) {
-  if (images.data.results === 0) {
+  if (images.data.results.length === 0) {
     messageNoResoults.classList.remove('is-hidden');
   } else {
-    messageNoResoults.classList.toggle('is-hidden');
+    messageNoResoults.classList.add('is-hidden');
   }
 
   const card = images.data.results

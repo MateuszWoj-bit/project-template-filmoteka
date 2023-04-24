@@ -2,11 +2,11 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  "homepage": "https://justdunia.github.io/filmoteka",
+  "homepage": "https://goitacademy.github.io/project-template-filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmoteka/"
+    "build": "parcel build src/*.html --public-url /project-template-filmoteka/"
   },
   "repository": {
     "type": "git",
