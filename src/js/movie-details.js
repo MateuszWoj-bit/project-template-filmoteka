@@ -163,14 +163,16 @@ function handleDetailClick(event) {
       console.log(exportData.title);
       const parsedWatch = JSON.parse(localStorage.getItem('WATCH_KEY'));
       const parsedQue = JSON.parse(localStorage.getItem('QUEUE_KEY'));
-      if (parsedWatch.find(movie => movie.title === exportData.title)) {
-        watchButton.innerHTML = 'ADDED TO WATCHED';
-        watchButton.classList.add('btn-mod-color');
+      if (parsedWatch.length >0)
+        {if (parsedWatch.find(movie => movie.title === exportData.title)) {
+          watchButton.innerHTML = 'ADDED TO WATCHED';
+          watchButton.classList.add('btn-mod-color');}
       }
-      if (parsedQue.find(movie => movie.title === exportData.title)) {
-        queueButton.innerHTML = 'ADDED TO QUEUE';
-        queueButton.classList.add('btn-mod-color');
-      }
+       if (parsedQue.length > 0)
+        { if (parsedQue.find(movie => movie.title === exportData.title)) {
+           queueButton.innerHTML = 'ADDED TO QUEUE';
+           queueButton.classList.add('btn-mod-color');}
+         }
     })
     .then(
       fetchProvider(event.target.getAttribute('movieID'))
