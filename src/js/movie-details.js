@@ -11,6 +11,7 @@ const queueButton = document.querySelector('.que');
 
 const spinner = document.querySelector('.sk-chase');
 let exportData;
+let detailsObjectYouTube;
 
 closeModal.onclick = modalToggle;
 
@@ -210,7 +211,7 @@ function handleDetailClick(event) {
       console.log(response);
       console.log(response.data.items[0].id.videoId);
       gatherDetailsForYt(response);
-      YoutubeLoad(response.data.items[0].id.videoId);
+      YoutubeLoad(detailsObjectYouTube.snipet);
     })
     .catch(function (error) {
       // handle error
