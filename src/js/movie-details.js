@@ -210,7 +210,7 @@ function handleDetailClick(event) {
       console.log(response);
       console.log(response.data.items[0].id.videoId);
       gatherDetailsForYt(response);
-      YoutubeLoad(detailsObjectYouTube.snipet);
+      YoutubeLoad(response.data.items[0].id.videoId);
     })
     .catch(function (error) {
       // handle error
